@@ -35,7 +35,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .type(meuTexto, { delay: 0 })
       .should("have.value", meuTexto);
 
-    cy.contains('button', 'Enviar').should("be.visible").click();
+    cy.contains("button", "Enviar").should("be.visible").click();
 
     cy.get('span[class="success"').should("be.visible");
   });
@@ -60,7 +60,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .type(meuTexto, { delay: 0 })
       .should("have.value", meuTexto);
 
-    cy.contains('button', 'Enviar').should("be.visible").click();
+    cy.contains("button", "Enviar").should("be.visible").click();
 
     cy.get('span[class="error"').should("be.visible");
   });
@@ -86,13 +86,13 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .type("elzaesimoes@gmail.com", { delay: 0 })
       .should("have.value", "elzaesimoes@gmail.com");
 
-    cy.get("#phone-checkbox").click()
+    cy.get("#phone-checkbox").click();
 
     cy.get("#open-text-area")
       .type(meuTexto, { delay: 0 })
       .should("have.value", meuTexto);
 
-    cy.contains('button', 'Enviar').should("be.visible").click();
+    cy.contains("button", "Enviar").should("be.visible").click();
 
     cy.get('span[class="error"').should("be.visible");
   });
@@ -125,23 +125,51 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .clear()
       .should("have.value", "");
 
-    cy.contains('button', 'Enviar').should("be.visible").click();
+    cy.contains("button", "Enviar").should("be.visible").click();
 
     cy.get('span[class="error"').should("be.visible");
   });
 
   it("06 - exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", function () {
-    cy.contains('button', 'Enviar').should("be.visible").click();
+    cy.contains("button", "Enviar").should("be.visible").click();
     cy.get('span[class="error"').should("be.visible");
   });
 
-  it('07 - envio o formulário com sucesso usando um comando customizado', function() {
-    cy.fillMandatoryFieldsAndSubmit()
+  it("07 - envio o formulário com sucesso usando um comando customizado", function () {
+    cy.fillMandatoryFieldsAndSubmit();
 
     cy.get('span[class="success"').should("be.visible");
-  })
+  });
 
-  it('08 - contains', function() {
-    cy.contains('button', 'Enviar').click()
-  })
+  it("08 - contains", function () {
+    cy.contains("button", "Enviar").click();
+  });
+
+  it("09 - selecione um produto (Youtube) por seu texto", function () {
+    cy.get('#product').select("YouTube").should("have.value", "youtube");
+  });
+
+  it("10 - seleciona um produto (Mentoria) por seu valor (value)", function () {
+    cy.get('#product').select("mentoria").should("have.value", "mentoria");
+  });
+
+  it("11 - seleciona um produto (Blog) por seu valor (value)", function () {
+    cy.get('#product').select(1).should("have.value", "blog");
+  });
+
+  it("12 - selecione uma opção aleatoria de um select dropdown", function () {
+    cy.get('#product')
+      .find("option")
+      .then((options) => {
+        const randomIndex = Math.floor(Math.random() * options.length);
+        const randomOptionText = options[randomIndex].text;
+
+        if (randomOptionText !== "Selecione") {
+          cy.get("select").select(randomOptionText);
+          cy.log(`Opção aleatória selecionada: ${randomOptionText}`);
+        } else {
+          cy.log(`Opção não pode ser clicada: ${randomOptionText}`);
+        }
+      });
+  });
 });
