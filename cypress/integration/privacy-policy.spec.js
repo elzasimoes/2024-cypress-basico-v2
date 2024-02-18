@@ -3,7 +3,7 @@
 const meuTexto =
   "Não salvamos dados submetidos no formulário da aplicação CAC TAT. Utilzamos as tecnologias HTML, CSS e JavaScript, para simular uma aplicação real. No entanto, a aplicação é um exemplo, sem qualquer persistência de dados, e usada para fins de ensino. Talking About Testing";
 
-describe("Central de Atendimento ao Cliente TAT", function () {
+describe("Página de política de privacidade", function () {
   beforeEach(() => {
     // Código a ser executado antes de cada teste
     cy.visit("http://127.0.0.1:5500/src/privacy.html"); // Exemplo: visitar um site antes de cada teste
