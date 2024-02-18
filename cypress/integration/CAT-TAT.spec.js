@@ -86,7 +86,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .type("elzaesimoes@gmail.com", { delay: 0 })
       .should("have.value", "elzaesimoes@gmail.com");
 
-    cy.get("#phone-checkbox").click();
+    cy.get("#phone-checkbox").check();
 
     cy.get("#open-text-area")
       .type(meuTexto, { delay: 0 })
@@ -199,9 +199,10 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       });
   });
 
-  it.only("16 - Marca ambos checkbox e desmarca o ultimo", function () {
+  it("16 - Marca ambos checkbox e desmarca o ultimo", function () {
     cy.get('input[type="checkbox"]')
       .check()
+      .should('be.checked')
       .last()
       .uncheck()
       .should("not.be.checked");
