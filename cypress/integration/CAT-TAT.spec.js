@@ -179,12 +179,23 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .should("have.value", "feedback");
   });
 
-  it.only("14 - Marca cada tipo de atendimento", function () {
+  it("14 - Marca cada tipo de atendimento", function () {
     cy.get('input[type="radio"]')
       .should("have.length", 3)
       .each(function ($radio) {
         cy.wrap($radio).check();
         cy.wrap($radio).should("be.checked");
+      });
+  });
+
+  it.only("15 - Marca cada e desmarcar o meio de contato preferencial", function () {
+    cy.get('input[type="checkbox"]')
+      .should("have.length", 2)
+      .each(function ($checkbox) {
+        cy.wrap($checkbox).check();
+        cy.wrap($checkbox).should("be.checked");
+        cy.wrap($checkbox).uncheck();
+        cy.wrap($checkbox).should("not.be.checked");
       });
   });
 });
