@@ -207,4 +207,14 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .uncheck()
       .should("not.be.checked");
   });
+
+  it.only("17- selecione um arquivo da pasta fixtures", function() {
+    const filePath = 'cypress/fixtures/example.json';
+    cy.get('#file-upload')
+    .should('not.have.value')
+    .selectFile(filePath, { action: 'drag-drop' })
+    .should(function($input) {
+      expect($input[0].files[0].name).to.equal('example.json')
+    })
+  })
 });
