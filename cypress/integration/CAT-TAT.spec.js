@@ -208,11 +208,21 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       .should("not.be.checked");
   });
 
-  it.only("17- selecione um arquivo da pasta fixtures", function() {
+  it("17- selecione um arquivo da pasta fixtures", function() {
     const filePath = 'cypress/fixtures/example.json';
     cy.get('#file-upload')
     .should('not.have.value')
     .selectFile(filePath, { action: 'drag-drop' })
+    .should(function($input) {
+      expect($input[0].files[0].name).to.equal('example.json')
+    })
+  })
+
+  it.only("18- seleciona um arquivo utilizando uma fixture para a qual foi dada um alias", function() {
+    cy.fixture('example.json').as('sampleFile')
+    cy.get('#file-upload')
+    .should('not.have.value')
+    .selectFile('@sampleFile', { action: 'drag-drop' })
     .should(function($input) {
       expect($input[0].files[0].name).to.equal('example.json')
     })
