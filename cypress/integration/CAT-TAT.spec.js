@@ -146,19 +146,19 @@ describe("Central de Atendimento ao Cliente TAT", function () {
   });
 
   it("09 - selecione um produto (Youtube) por seu texto", function () {
-    cy.get('#product').select("YouTube").should("have.value", "youtube");
+    cy.get("#product").select("YouTube").should("have.value", "youtube");
   });
 
   it("10 - seleciona um produto (Mentoria) por seu valor (value)", function () {
-    cy.get('#product').select("mentoria").should("have.value", "mentoria");
+    cy.get("#product").select("mentoria").should("have.value", "mentoria");
   });
 
   it("11 - seleciona um produto (Blog) por seu valor (value)", function () {
-    cy.get('#product').select(1).should("have.value", "blog");
+    cy.get("#product").select(1).should("have.value", "blog");
   });
 
   it("12 - selecione uma opção aleatoria de um select dropdown", function () {
-    cy.get('#product')
+    cy.get("#product")
       .find("option")
       .then((options) => {
         const randomIndex = Math.floor(Math.random() * options.length);
@@ -170,6 +170,21 @@ describe("Central de Atendimento ao Cliente TAT", function () {
         } else {
           cy.log(`Opção não pode ser clicada: ${randomOptionText}`);
         }
+      });
+  });
+
+  it("13 -  marca o tipo de atendimento 'Feedback'", function () {
+    cy.get('input[type="radio"][value="feedback"]')
+      .check()
+      .should("have.value", "feedback");
+  });
+
+  it.only("14 - Marca cada tipo de atendimento", function () {
+    cy.get('input[type="radio"]')
+      .should("have.length", 3)
+      .each(function ($radio) {
+        cy.wrap($radio).check();
+        cy.wrap($radio).should("be.checked");
       });
   });
 });
