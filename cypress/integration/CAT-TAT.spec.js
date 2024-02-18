@@ -188,7 +188,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
       });
   });
 
-  it.only("15 - Marca cada e desmarcar o meio de contato preferencial", function () {
+  it("15 - Marca cada checkbox e desmarca do meio de contato preferencial", function () {
     cy.get('input[type="checkbox"]')
       .should("have.length", 2)
       .each(function ($checkbox) {
@@ -197,5 +197,13 @@ describe("Central de Atendimento ao Cliente TAT", function () {
         cy.wrap($checkbox).uncheck();
         cy.wrap($checkbox).should("not.be.checked");
       });
+  });
+
+  it.only("16 - Marca ambos checkbox e desmarca o ultimo", function () {
+    cy.get('input[type="checkbox"]')
+      .check()
+      .last()
+      .uncheck()
+      .should("not.be.checked");
   });
 });
