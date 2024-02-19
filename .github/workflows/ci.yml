@@ -1,0 +1,12 @@
+name: Primeira integracao continua
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+      #baixar o código do projeto
+        uses: actions/checkout@v2
+      - name: Cypress run
+      #automaticamente roda com a imagem
+        uses: cypress-io/github-action@v2
