@@ -6,7 +6,7 @@ const meuTexto =
 describe("Central de Atendimento ao Cliente TAT", function () {
   beforeEach(() => {
     // Código a ser executado antes de cada teste
-    cy.visit("http://127.0.0.1:5500/src/index.html"); // Exemplo: visitar um site antes de cada teste
+    cy.visit("src/index.html"); // Exemplo: visitar um site antes de cada teste
   });
 
   it("verifica o título da aplicação", function () {

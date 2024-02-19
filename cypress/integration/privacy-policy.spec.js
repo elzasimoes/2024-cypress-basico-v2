@@ -6,7 +6,7 @@ const meuTexto =
 describe("Página de política de privacidade", function () {
   beforeEach(() => {
     // Código a ser executado antes de cada teste
-    cy.visit("http://127.0.0.1:5500/src/privacy.html"); // Exemplo: visitar um site antes de cada teste
+    cy.visit("/src/privacy.html"); // Exemplo: visitar um site antes de cada teste
   });
 
   it("01 - verifica o título da aplicação", function () {
