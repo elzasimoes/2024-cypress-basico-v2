@@ -10,7 +10,7 @@ describe("Página de política de privacidade", function () {
   });
 
   it("01 - verifica o título da aplicação", function () {
-    cy.title().should("be.equal", "Central de Atendimento ao Cliente TA - Política de privacidade");
+    cy.title().should("be.equal", "Central de Atendimento ao Cliente TAT - Política de privacidade");
   }); 
 
   it("02 - verifica o título dentro da aplicação", function () {
