@@ -135,7 +135,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get('span[class="error"').should("be.visible");
   });
 
-  it.only("07 - envio o formulário com sucesso usando um comando customizado", function () {
+  it("07 - envio o formulário com sucesso usando um comando customizado", function () {
     
     cy.clock()
 
@@ -244,5 +244,22 @@ describe("Central de Atendimento ao Cliente TAT", function () {
 
     cy.contains('#title', 'CAC TAT - Política de privacidade').should('be.visible')
   });
+
+  it.only('exibe e esconde as mensagens de sucesso e erro usando o .invoke', () => {
+    cy.get('.success')
+      .should('not.be.visible')
+      .invoke('show')
+      .should('be.visible')
+      .and('contain', 'Mensagem enviada com sucesso.')
+      .invoke('hide')
+      .should('not.be.visible')
+    cy.get('.error')
+      .should('not.be.visible')
+      .invoke('show')
+      .should('be.visible')
+      .and('contain', 'Valide os campos obrigatórios!')
+      .invoke('hide')
+      .should('not.be.visible')
+  })
 
 });
