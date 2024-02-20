@@ -135,10 +135,17 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get('span[class="error"').should("be.visible");
   });
 
-  it("07 - envio o formulário com sucesso usando um comando customizado", function () {
+  it.only("07 - envio o formulário com sucesso usando um comando customizado", function () {
+    
+    cy.clock()
+
     cy.fillMandatoryFieldsAndSubmit();
 
     cy.get('span[class="success"').should("be.visible");
+
+    cy.tick(3000)
+
+    cy.get('span[class="success"').should("not.be.visible");
   });
 
   it("08 - contains", function () {
